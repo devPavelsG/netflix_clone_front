@@ -1,9 +1,9 @@
-import {ModeToggle} from "@/components/mode-toggle";
+import { ModeToggle } from '@/components/mode-toggle';
 
 export function Header() {
-    return (
-        <header>
-            <ModeToggle/>
-        </header>
-    )
+  return (
+    <header>
+      <ModeToggle />
+    </header>
+  );
 }

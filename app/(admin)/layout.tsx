@@ -1,11 +1,7 @@
 export default function AdminLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  return (
-      <section>
-        {children}
-      </section>
-  )
+  return <section>{children}</section>;
 }
