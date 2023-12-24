@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/components/ui/use-toast';
-import { SignUpSchema } from '@/validation/SignUpValidation';
+import { SignUpSchema } from '@/validation/sign-up-validation';
 import { useApiQuery } from '@/lib/use-api-query';
 import { JwtTokensResponse, useJwt } from '@/lib/jwt';
 

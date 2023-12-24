@@ -3,7 +3,9 @@ import jwt from 'jsonwebtoken';
 
 type UseJwtType = {
   setTokens: Function;
-  decodeJWT: Function;
+  decodeJWT: (token?: string) => Token | null;
+  removeTokens: Function;
+  decodedToken: Token | undefined | null;
 };
 
 export type JwtTokensResponse = {
@@ -13,6 +15,7 @@ export type JwtTokensResponse = {
 
 export type Token = {
   role: string;
+  fullname: string;
   sub: string;
   iat: number;
   exp: number;
@@ -35,7 +38,13 @@ export function useJwt(): UseJwtType {
     }
   };
 
-  const decodeJWT = (token?: string) => {
+  const decodeJWT = (token?: string): Token | null => {
+    if (!token) return null;
+    return jwt.decode(token) as Token;
+  };
+
+  const decodedToken = () => {
+    const token = Cookies.get('access_token');
     try {
       if (!token) return;
       return jwt.decode(token) as Token;
@@ -45,5 +54,10 @@ export function useJwt(): UseJwtType {
     }
   };
 
-  return { setTokens, decodeJWT };
+  const removeTokens = () => {
+    Cookies.remove('access_token');
+    Cookies.remove('refresh_token');
+  };
+
+  return { setTokens, decodeJWT, decodedToken: decodedToken(), removeTokens };
 }
